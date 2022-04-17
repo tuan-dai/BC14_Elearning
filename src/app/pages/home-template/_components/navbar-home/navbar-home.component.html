@@ -1,0 +1,71 @@
+
+
+<header class="header">
+  <nav class="navbar navbar-expand-xl">
+    <a class="navbar-brand" routerLink="/"
+      ><img src="https://i.imgur.com/lC22izJ.png" alt="" class="logo-cybersoft"
+    /></a>
+    <div class="d-flex align-items-center">
+      <div class="login mx-2">
+        <div class="d-flex align-items-center" *ngIf="!userLogin; else infoLogin">
+          <button
+            data-toggle="modal"
+            data-target="#login"
+            class="btn btn-login text-white"
+            (click)='onClickLogin()'
+          >
+            Đăng nhập
+          </button>
+          <button
+            data-toggle="modal"
+            data-target="#login"
+            class="btn btn-outline-primary"
+            (click)='onClickRegister()'
+          >
+            Đăng ký
+          </button>
+        </div>
+        <ng-template #infoLogin>
+          <div class="d-flex align-items-center position-relative">
+            <div routerLink="/profile" class="info d-flex align-items-center" style="cursor: pointer;">
+              <img style="height:30px; width: 30px; border-radius: 50%;" src="https://picsum.photos/200/200" alt="" class="mr-2">
+              <h3 class="m-0 text-white">{{userLogin?.hoTen}}</h3>
+            </div>
+            <div (click)="handleLogout()" class="logout d-flex align-items-center">
+              <h3 class="m-0 text-white">Đăng xuất</h3>
+            </div>
+
+          </div>
+        </ng-template>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarScroll"
+        aria-controls="navbarScroll"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon class="icon-menu">menu</mat-icon>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll">
+        <li class="nav-item" *ngFor="let category of courseCategory">
+          <a
+            class="nav-link"
+            routerLink="/category/{{ category.maDanhMuc }}"
+            [queryParams]="{ tenDanhMuc: category.tenDanhMuc }"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >{{ category?.tenDanhMuc }}</a
+          >
+          <div class="line"></div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<app-modal [isLogin]="isLogin"></app-modal>

@@ -1,0 +1,179 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.dashboard {
+  position: absolute;
+  top: 100px;
+}
+
+.table-dashboard th {
+  background-color: #260b42;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+// Responsive table
+@media only screen and (min-width: 1200px) {
+  .dashboard {
+    left: 250px;
+    right: 20px;
+  }
+  .table-dashboard {
+    margin-top: 25rem;
+  }
+}
+@media only screen and (min-width: 960px) and (max-width: 1200px) {
+  .dashboard {
+    left: 250px;
+    right: 20px;
+  }
+  .table-dashboard {
+    left: 90px;
+    margin-top: 10rem;
+  }
+}
+@media only screen and (min-width: 760px) and(max-width: 960px) {
+  .table-dashboard {
+    left: 90px;
+    min-width: 500px !important;
+    max-width: 900px !important;
+  }
+  .table-dashboard {
+    left: 90px;
+    margin-top: 10rem;
+  }
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+	Label the data
+	*/
+  td:nth-of-type(1):before {
+    content: "Tài Khoản";
+  }
+  td:nth-of-type(2):before {
+    content: "Họ Tên";
+  }
+  td:nth-of-type(3):before {
+    content: "Số ĐT";
+  }
+  td:nth-of-type(4):before {
+    content: "Email";
+  }
+  td:nth-of-type(5):before {
+    content: "Mã Người Dùng";
+  }
+  td:nth-of-type(6):before {
+    content: "Hành Động";
+  }
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 780px) and (max-device-width: 1024px) {
+  .dashboard {
+    left: 90px;
+    max-width: 500px !important;
+    margin-right: 20px;
+  }
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+	Label the data
+	*/
+  td:nth-of-type(1):before {
+    content: "STT";
+  }
+  td:nth-of-type(2):before {
+    content: "Họ Tên";
+  }
+  td:nth-of-type(3):before {
+    content: "Tài Khoản";
+  }
+  td:nth-of-type(4):before {
+    content: "Trạng Thái";
+  }
+  td:nth-of-type(5):before {
+    content: "Hành Động";
+  }
+}

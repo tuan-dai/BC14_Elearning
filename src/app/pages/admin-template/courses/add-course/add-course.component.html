@@ -1,0 +1,313 @@
+<div class="container">
+  <div class="addcourse-wrapper">
+    <h2 class="mb-4" style="font-size: 2rem">Thêm Khoá Học</h2>
+
+    <!-- Show Success -->
+    <div class="alert alert-success alert-dismissible" *ngIf="success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>Success!</strong> Bạn đã thêm khóa học thành công.
+    </div>
+    <!-- Show Error -->
+    <div class="alert alert-success alert-dismissible" *ngIf="error">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>Errors!</strong> {{ errMess }}.
+    </div>
+    <form #addCourseForm="ngForm" (ngSubmit)="addCourse(addCourseForm.value)">
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Mã Khóa Học:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="maKhoaHoc"
+            ngModel
+            #MaKhoaHoc="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="MaKhoaHoc.errors && (MaKhoaHoc.dirty || MaKhoaHoc.touched)"
+          >
+            <div *ngIf="MaKhoaHoc.errors?.['required']">
+              *Mã khóa học không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Bí Danh:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="biDanh"
+            ngModel
+            #BiDanh="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="BiDanh.errors && (BiDanh.dirty || BiDanh.touched)"
+          >
+            <div *ngIf="BiDanh.errors?.['required']">
+              *Bí danh không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Tên Khoá Học:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="tenKhoaHoc"
+            ngModel
+            #TenKhoaHoc="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="
+              TenKhoaHoc.errors && (TenKhoaHoc.dirty || TenKhoaHoc.touched)
+            "
+          >
+            <div *ngIf="TenKhoaHoc.errors?.['required']">
+              *Tên khóa học không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Mô Tả:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="moTa"
+            ngModel
+            #MoTa="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="MoTa.errors && (MoTa.dirty || MoTa.touched)"
+          >
+            <div *ngIf="MoTa.errors?.['required']">*Mô tả không được trống</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Lượt Xem:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="luotXem"
+            ngModel
+            #LuotXem="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="LuotXem.errors && (LuotXem.dirty || LuotXem.touched)"
+          >
+            <div *ngIf="LuotXem.errors?.['required']">
+              *Lượt xem không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Đánh Giá:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="danhGia"
+            ngModel
+            #DanhGia="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="DanhGia.errors && (DanhGia.dirty || DanhGia.touched)"
+          >
+            <div *ngIf="DanhGia.errors?.['required']">
+              *Đánh giá không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Hình Ảnh:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            type="file"
+            accept="image/jpeg, image/png, image/jpeg"
+            name="hinhAnh"
+            ngModel
+            #HinhAnh="ngModel"
+            required
+            (change)="File($event)"
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="HinhAnh.errors && (HinhAnh.dirty || HinhAnh.touched)"
+          >
+            <div *ngIf="HinhAnh.errors?.['required']">
+              *Hình ảnh không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Mã Nhóm:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="maNhom"
+            ngModel
+            #MaNhom="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="MaNhom.errors && (MaNhom.dirty || MaNhom.touched)"
+          >
+            <div *ngIf="MaNhom.errors?.['required']">
+              *Mã nhóm không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Ngày Tạo:</label
+        >
+
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="dd/MM/YYYY"
+            name="ngayTao"
+            ngModel
+            #NgayTao="ngModel"
+            required
+          />
+
+          <div
+            class="text-danger"
+            *ngIf="NgayTao.errors && (NgayTao.dirty || NgayTao.touched)"
+          >
+            <div *ngIf="NgayTao.errors?.['required']">*Ngày tạo chưa chọn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Mã Danh Mục Khoá Học:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <select
+            class="form-select form-select-lg mt-2"
+            name="maDanhMucKhoahoc"
+            ngModel
+            #MaDanhMucKH="ngModel"
+            required
+          >
+            <ng-container *ngFor="let courseCata of courseCatagory">
+              <option>{{ courseCata.maDanhMuc }}</option>
+            </ng-container>
+          </select>
+          <div
+            class="text-danger mt-1"
+            *ngIf="
+              MaDanhMucKH.errors && (MaDanhMucKH.dirty || MaDanhMucKH.touched)
+            "
+          >
+            <div *ngIf="MaDanhMucKH.errors?.['required']">
+              *Mã danh mục khóa học không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Tài Khoản Người Tạo:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <select
+            class="form-select form-select-lg mt-2"
+            name="taiKhoanNguoiTao"
+            ngModel
+            #TaiKhoanNguoiTao="ngModel"
+            required
+          >
+            <ng-container *ngFor="let user of listUser">
+              <option>{{ user.taiKhoan }}</option>
+            </ng-container>
+          </select>
+          <div
+            class="text-danger mt-1"
+            *ngIf="
+              TaiKhoanNguoiTao.errors &&
+              (TaiKhoanNguoiTao.dirty || TaiKhoanNguoiTao.touched)
+            "
+          >
+            <div *ngIf="TaiKhoanNguoiTao.errors?.['required']">
+              *Tài khoản người tạo không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Tác vụ:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <button
+            class="btn btn-success"
+            style="width: 5rem"
+            [disabled]="!addCourseForm.valid"
+          >
+            Thêm
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

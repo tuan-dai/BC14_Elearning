@@ -1,0 +1,202 @@
+
+
+<div
+class="modal fade"
+id="login"
+tabindex="-1"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 *ngIf="isLogin; else headerRegister">Đăng nhập</h2>
+      <ng-template #headerRegister>
+        <h2>Đăng ký</h2>
+      </ng-template>
+      <button
+        type="button"
+        class="close"
+        #btnClose
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form #formCommon="ngForm" (ngSubmit)="onSubmit(formCommon.value)">
+      <div class="modal-body">
+        <h3 *ngIf="isLogin; else errorRegisterTemplate" class="text-danger text-center">
+          {{errorLogin?.error }}
+        </h3>
+        <ng-template #errorRegisterTemplate>
+          <h3 class="text-danger text-center">
+          {{errorRegister?.error }}
+          </h3>
+        </ng-template>
+        <div *ngIf="isLogin; else formRegister">
+          <div class="form-group">
+            <label for="">Tài khoản: </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              name="taiKhoan"
+              aria-describedby="helpId"
+              required
+              ngModel
+              #taiKhoan="ngModel"
+              minlength="6"
+              maxlength="24"
+            />
+            <div class="text-danger"
+            *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)">
+              <div *ngIf="taiKhoan.errors?.['required']">Vui lòng nhập vào tài khoản</div>
+              <div *ngIf="taiKhoan.errors?.['minlength'] || taiKhoan.errors?.['maxlength']">Vui lòng nhập từ 6 đến 24 ký tự</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Mật khẩu:</label>
+            <input
+              type="password"
+              name="matKhau"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+              ngModel
+              #matKhau="ngModel"
+              required
+              minlength="6"
+              maxlength="32"
+            />
+            <div class="text-danger"
+            *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)">
+              <div *ngIf="matKhau.errors?.['required']">Vui lòng nhập vào mật khẩu</div>
+              <div *ngIf="matKhau.errors?.['minlength'] || matKhau.errors?.['maxlength']">Vui lòng nhập từ 8 đến 32 ký tự</div>
+            </div>
+          </div>
+        </div>
+        <ng-template #formRegister>
+          <div class="form-group">
+            <label for="">Họ tên: </label>
+            <input
+              type="text"
+              name="hoTen"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+              ngModel
+              #hoTen="ngModel"
+              required
+              pattern="[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]*"
+            />
+            <div class="text-danger"
+            *ngIf="hoTen.errors && (hoTen.touched || hoTen.dirty)">
+              <div *ngIf="hoTen.errors?.['required']">Vui lòng nhập vào họ tên</div>
+              <div *ngIf="hoTen.errors?.['pattern']">Tên không đúng định dạng</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Tài khoản:</label>
+            <input
+              type="text"
+              name="taiKhoan"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+            ngModel
+            #taiKhoan="ngModel"
+            required
+            minlength="6"
+            maxlength="24"
+            />
+            <div class="text-danger"
+            *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)">
+              <div *ngIf="taiKhoan.errors?.['required']">Vui lòng nhập vào tài khoản</div>
+              <div *ngIf="taiKhoan.errors?.['minlength'] || taiKhoan.errors?.['maxlength']">Vui lòng nhập từ 6 đến 24 ký tự</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Email:</label>
+            <input
+              type="text"
+              name="email"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+              ngModel
+            #email="ngModel"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            />
+            <div class="text-danger"
+            *ngIf="email.errors && (email.touched || email.dirty)">
+              <div *ngIf="email.errors?.['required']">Vui lòng nhập vào email</div>
+              <div *ngIf="email.errors?.['pattern']">Email không đúng định dạng</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Số điện thoại:</label>
+            <input
+              type="text"
+              name="soDT"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+              ngModel
+              required
+              #soDT="ngModel"
+              pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+            />
+            <div class="text-danger"
+            *ngIf="soDT.errors && (soDT.touched || soDT.dirty)">
+              <div *ngIf="soDT.errors?.['required']">Vui lòng nhập vào số điện thoại</div>
+              <div *ngIf="soDT.errors?.['pattern']">Số điện thoại không đúng định dạng</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Mật khẩu:</label>
+            <input
+              type="password"
+              name="matKhau"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+              ngModel
+              #matKhau="ngModel"
+              required
+              minlength="8"
+              maxlength="32"
+            />
+            <div class="text-danger"
+            *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)">
+              <div *ngIf="matKhau.errors?.['required']">Vui lòng nhập vào mật khẩu</div>
+              <div *ngIf="matKhau.errors?.['minlength'] || matKhau.errors?.['maxlength']">Vui lòng nhập từ 8 đến 32 ký tự</div>
+            </div>
+          </div>
+
+        </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Đóng
+        </button>
+        <button
+          *ngIf="isLogin; else btnRegister"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="formCommon.invalid"
+        >
+          Đăng Nhập
+        </button>
+        <ng-template #btnRegister>
+          <button type="submit" class="btn btn-primary"
+          [disabled]="formCommon.invalid"
+          >Đăng Ký</button>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

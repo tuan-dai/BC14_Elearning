@@ -1,0 +1,20 @@
+
+<app-loading></app-loading>
+
+<div class="search-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" *ngIf="error; else searchResults;">
+        <div class=" alert alert-danger" role="alert">
+          Không tìm thấy khóa học với từ khóa <b>{{ error.error }}</b>!
+        </div>
+      </div>
+      <ng-template #searchResults>
+        <div *ngFor="let course of listCourse" class="col-sm-6 col-lg-3 p-2">
+          <app-card-course [course]="course"></app-card-course>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+</div>

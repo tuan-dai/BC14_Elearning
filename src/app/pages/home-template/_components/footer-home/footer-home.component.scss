@@ -1,0 +1,31 @@
+footer {
+  background: #1e1e2a;
+  color: #999;
+  padding: 60px 0 20px;
+  .province {
+    margin-bottom: 50px;
+
+    .city {
+      font-size: 18px;
+      line-height: 23px;
+      color: #999999;
+      word-break: break-word;
+      margin-bottom: 20 px;
+    }
+    .place {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: 600;
+      color: #fff;
+      word-break: break-word;
+      margin-bottom: 12 px;
+    }
+    .info {
+      list-style: none;
+      padding: 0;
+      li {
+        font-size: 13px;
+      }
+    }
+  }
+}

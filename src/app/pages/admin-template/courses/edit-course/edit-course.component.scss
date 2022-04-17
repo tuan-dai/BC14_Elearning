@@ -1,0 +1,43 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+.editcourse-wrapper {
+  position: absolute;
+  top: 100px;
+}
+
+//Responsive
+@media screen and (min-width: 1200px) {
+  .editcourse-wrapper {
+    left: 250px;
+    min-width: 1000px;
+  }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1200px) {
+  .editcourse-wrapper {
+    left: 250px;
+    right: 30px;
+  }
+}
+
+@media screen and (min-width: 561px) and (max-width: 960px) {
+  .editcourse-wrapper {
+    left: 100px;
+    min-width: 400px;
+    max-width: 950px;
+  }
+
+  .col-form-label {
+    text-align: right !important;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .editcourse-wrapper {
+    left: 100px;
+    min-width: 300px !important;
+  }
+  .col-form-label {
+    text-align: left !important;
+  }
+}

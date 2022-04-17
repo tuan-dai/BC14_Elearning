@@ -1,0 +1,15 @@
+<app-loading></app-loading>
+
+<div class="container">
+  <div *ngFor="let category of courseCategory" class="py-4">
+    <h2 class="text-center">{{ category.tenDanhMuc | uppercase }}</h2>
+    <app-list-course [category]="category"></app-list-course>
+    <div class="text-center">
+      <button routerLink="/category/{{category.maDanhMuc}}" [queryParams]="{
+        tenDanhMuc: category.tenDanhMuc
+      }" class="rounded-pill btn btn-outline-primary px-5 py-3">
+        Xem Thêm
+      </button>
+    </div>
+  </div>
+</div>

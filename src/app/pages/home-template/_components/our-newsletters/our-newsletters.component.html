@@ -1,0 +1,50 @@
+<div class="our-newsletters">
+  <div class="wrap">
+    <div class="container">
+      <div class="row justify-content-center" style="width: 100%">
+        <div class="col-md-10">
+          <div class="our-title">
+            {{ ourNewsletters.title | uppercase }}
+          </div>
+          <form #formSearch="ngForm" (ngSubmit)="handleSubmit(formSearch.value)"  *ngIf="ourNewsletters.isSearch; else breadcrumb">
+            <div class="d-flex">
+              <input
+                class="form-control input-search"
+                placeholder="Nhập vào khóa học bạn muốn tham gia"
+                type="text"
+                #search="ngModel"
+                [(ngModel)]="searchValue"
+                name="search"
+              />
+              <button  class="btn btn-primary btn-search">Tìm khóa học</button>
+
+            </div>
+          </form>
+          <ng-template #breadcrumb>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb justify-content-center">
+                <li *ngFor="let item of this.ourNewsletters?.breadcrumb"
+                [ngClass]="{
+                  'active': item.active
+                }"
+                class="breadcrumb-item"
+                >
+
+                <span *ngIf="item.active; else notActive">
+                  {{item.name}}
+                </span>
+                <ng-template #notActive>
+                  <a routerLink="{{item.link}}" [queryParams]="item.queryParams || ''">
+                    {{item.name}}
+                  </a>
+                </ng-template>
+
+              </li>
+              </ol>
+            </nav>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

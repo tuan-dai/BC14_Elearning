@@ -1,0 +1,51 @@
+<!-- Show Success -->
+<div class="alert alert-success alert-dismissible" *ngIf="success">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Ghi danh thành công.
+</div>
+<!-- Show Error -->
+<div class="alert alert-success alert-dismissible" *ngIf="error">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> Huỷ ghi danh thành công.
+</div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th class="col-1">STT</th>
+      <th class="col-1">Tài Khoản</th>
+      <th class="col-1">Bí danh</th>
+      <th class="col-1">Hành Động</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let user of listUserPending
+          | paginate
+            : {
+                itemsPerPage: 9,
+                currentPage: page,
+                totalItems: totalLength
+              };
+        let index = index
+      "
+    >
+      <td>{{ index + 1 }}</td>
+      <td>{{ user.taiKhoan }}</td>
+      <td>{{ user.biDanh }}</td>
+      <td>
+        <button class="btn text-primary" (click)="cancelRegister(user)">
+          <i class="bi bi-x-circle"></i>
+        </button>
+        <button class="btn text-danger" (click)="registerCourse(user)">
+          <i class="bi bi-calendar2-check"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls
+  class="text-center"
+  (pageChange)="page = $event"
+></pagination-controls>

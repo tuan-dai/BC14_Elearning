@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <a routerLink="/admin" class="d-flex align-items-center">
+        <i class="bi bi-house pb-3 home-icon" style="font-size: 1.5rem"></i>
+        <h2 id="text-hide">Elearning</h2>
+      </a>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a routerLink="/admin"
+          ><i class="bi bi-speedometer mr-2"></i>
+          <span id="text-hide">Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a
+          href="#homeSubmenu"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="dropdown-toggle"
+          ><i class="bi bi-person mr-2"></i><span id="text-hide">Users</span></a
+        >
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li>
+            <a routerLink="/admin/users/user-manager"
+              ><i class="bi bi-person mr-2"></i
+              ><span id="text-hide">Users</span></a
+            >
+          </li>
+          <li>
+            <a routerLink="/admin/users/add-user"
+              ><i class="bi bi-person-plus mr-2"></i
+              ><span id="text-hide">Add User</span></a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a
+          href="#pageSubmenu"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="dropdown-toggle"
+          ><i class="bi bi-journal-code mr-2"></i
+          ><span id="text-hide">Courses</span></a
+        >
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          <li>
+            <a routerLink="/admin/courses/"
+              ><i class="bi bi-journal-code mr-2"></i><span>Courses</span></a
+            >
+          </li>
+          <li>
+            <a routerLink="/admin/courses/add-course"
+              ><i class="bi bi-journal-code mr-2"></i><span>Add Course</span></a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Header Navbar  -->
+  <div class="header-navbar d-flex justify-content-end align-items-center">
+    <div>
+      <button class="btn" (click)="logOut()">
+        <i class="bi bi-person-circle mr-1"></i> Dang xuat
+      </button>
+    </div>
+  </div>
+</div>

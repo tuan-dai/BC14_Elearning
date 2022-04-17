@@ -1,0 +1,174 @@
+<div class="container-fluid">
+  <div class="adduser-wrapper">
+    <h2 class="mb-4" style="font-size: 2rem">Thêm Người Dùng</h2>
+    <div class="alert alert-success alert-dismissible" *ngIf="success">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>Success!</strong> Bạn đã thêm người dùng thành công.
+    </div>
+
+    <div class="alert alert-success alert-dismissible" *ngIf="error">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close"
+        >&times;</a
+      >
+      <strong>Errors!</strong> {{ errMess }}
+    </div>
+
+    <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm.value)">
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Tài Khoản:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="taiKhoan"
+            ngModel
+            #TaiKhoan="ngModel"
+            required
+            minlength="7"
+            maxlength="15"
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="TaiKhoan.errors && (TaiKhoan.dirty || TaiKhoan.touched)"
+          >
+            <div *ngIf="TaiKhoan.errors?.['required']">
+              *Tài khoản không được trống
+            </div>
+            <div
+              *ngIf="TaiKhoan.errors?.['minlength'] || TaiKhoan.errors?.['maxlength']"
+            >
+              *Độ dài ký tự tối thiểu là 7
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Họ Tên:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="text"
+            name="hoTen"
+            ngModel
+            #HoTen="ngModel"
+            required
+            minlength="7"
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="HoTen.errors && (HoTen.dirty || HoTen.touched)"
+          >
+            <div *ngIf="HoTen.errors?.['required']">
+              *Họ tên không được trống
+            </div>
+            <div *ngIf="HoTen.errors?.['minlength']">
+              *Do dai ky tu toi thieu la 7
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Mật Khẩu:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="password"
+            name="matKhau"
+            ngModel
+            #MatKhau="ngModel"
+            required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="MatKhau.errors && (MatKhau.dirty || MatKhau.touched)"
+          >
+            <div *ngIf="MatKhau.errors?.['required']">
+              *Mật Khẩu không được trống
+            </div>
+            <div *ngIf="MatKhau.errors?.['pattern']">
+              *Mật Khẩu không đúng định dạng
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-4">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Số Điện Thoại:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="number"
+            name="soDT"
+            ngModel
+            #SoDT="ngModel"
+            required
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="SoDT.errors && (SoDT.dirty || SoDT.touched)"
+          >
+            <div *ngIf="SoDT.errors?.['required']">
+              *Số điện thoại không được trống
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Email:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <input
+            class="form-control"
+            type="email"
+            name="email"
+            ngModel
+            #Email="ngModel"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          />
+          <div
+            class="text-danger mt-1"
+            *ngIf="Email.errors && (Email.dirty || Email.touched)"
+          >
+            <div *ngIf="Email.errors?.['required']">
+              *Email không được trống
+            </div>
+            <div *ngIf="Email.errors?.['pattern']">
+              *Email không đúng định dạng
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-4 col-lg-3 col-form-label text-right"
+          >Tác vụ:</label
+        >
+        <div class="col-sm-8 col-lg-9">
+          <button
+            class="btn btn-success"
+            style="width: 5rem"
+            [disabled]="!addUserForm.valid"
+          >
+            Thêm
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
